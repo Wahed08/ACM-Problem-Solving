@@ -14,24 +14,15 @@ public:
     void insert(ListNode** root, int item){
         
         ListNode* temp = new ListNode;
-        ListNode* ptr;
         temp->val = item;
-        temp->next = NULL;
-
-        if (*root == NULL)
-            *root = temp;
-        else {
-            ptr = *root;
-            while (ptr->next != NULL)
-                ptr = ptr->next;
-            ptr->next = temp;
-        }
+        temp->next = *root;
+        *root = temp;
 }
     
     ListNode* arrayToList(vector<int>vec, int ln){
         
         ListNode *root = NULL;
-        for (int i = 0; i < ln; i++)
+        for (int i = ln-1; i >=0; i--)
             insert(&root, vec[i]);
        return root;
     }
