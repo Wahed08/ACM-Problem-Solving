@@ -49,9 +49,6 @@ public:
         vector<int>vec; 
         makeAnArray(head, n, vec);
         
-        // for(int i=0; i<vec.size(); i++){
-        //     cout<<vec[i]<<" ";
-        // }
         return convertToList(vec, vec.size());
     }
 };
