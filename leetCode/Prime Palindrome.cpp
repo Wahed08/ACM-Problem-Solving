@@ -1,56 +1,71 @@
 class Solution {
 public:
     
-    int checkPal(int n, int& k){
+    bool checkPal(int n){
         int temp = n;
         int number = n;
         int sum = 0, reminder;
         
         while(number != 0){
             reminder = number % 10;
-            if(sum > INT_MAX/10 ||  (sum == INT_MAX / 10 && reminder > 7)) return 0;
-            if(sum < INT_MIN/10 || (sum == INT_MIN / 10 && reminder < -8)) return 0;
             sum = sum*10 + reminder;
             number /= 10;
         }
         
         if(sum == temp){
-            k = n;
+            return true;
         }
-        // cout<<k<<" ";
-        return k;
+        return false;
     }
     
-    int sieve(int n, int& k){
-        bool prime[n*n + 1];
-        memset(prime, true, sizeof(prime));
+//     int sieve(int n, int& k){
+//         bool prime[10000001 + 1];
+//         memset(prime, true, sizeof(prime));
         
-        int x = n;
 
-    for(int i=2; i*i <= n*n; i++){
-        if(prime[i] == true){
-            for(int p = i*i; p <= n*n; p += i){
-                prime[p] = false;
-            }
-        }
-    }
-        int cnt = 0;
-        for(int i=2; i<=n*n; i++){
-        if(prime[i] && i>=n){
-            cnt = checkPal(i, k);
-            if(cnt>0)
-                break;
-        }
+//     for(int i=2; i <= sqrt(n); i++){
+//         if(prime[i] == true){
+//             for(int p = i*i; p < 10000000; p += i){
+//                 prime[p] = false;
+//             }
+//         }
+//     }
+//         int cnt = 0;
+//         for(int i=n; i < 10000000; i++){
+//         if(prime[i]){
+//             cnt = checkPal(i, k);
+//             if(cnt>0)
+//                 break;
+//         }
          
-      }
-        return k;
- }
+//       }
+       
+//          return k;
+//  }
+    
+     bool checkPrime(int n) {   
+    if (n <= 1) return false;
+    for (int i = 2; i <= sqrt(n); i++)
+        if (n % i == 0)
+            return false;
+    return true;
+}
     
     int primePalindrome(int n) {
-        int k = 0;
-        sieve(n, k);
-        if(n == 1)
-            return 2;
-        return k;
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+//         int k = 0;
+//         sieve(n, k);
+//         if(n == 1)
+//             return 2;
+//         return k;
+        
+        for(int i=n;i<10000000;i++){
+            if(checkPrime(i) && checkPal(i)){
+                return i;
+            }
+        }
+        return 100030001;
     }
 };
