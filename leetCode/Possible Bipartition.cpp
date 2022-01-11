@@ -27,10 +27,9 @@ public:
         vector<vector<int>>vec(n+1);
           
          for(int i=0; i<dislikes.size(); i++){
-            vector<int>v = dislikes[i];
              
-            vec[v[0]].push_back(v[1]);
-            vec[v[1]].push_back(v[0]);
+            vec[dislikes[i][0]].push_back(dislikes[i][1]);
+            vec[dislikes[i][1]].push_back(dislikes[i][0]);
          }
         
         int color[n+1];
