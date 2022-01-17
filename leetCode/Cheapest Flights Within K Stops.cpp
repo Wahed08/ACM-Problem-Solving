@@ -30,7 +30,7 @@ public:
         ios_base::sync_with_stdio(false);
         cin.tie(0), cout.tie(0);
         
-        vector<vector<pair<int, int>>>vec(n);
+        vector<vector<pair<int, int>>>vec(n);     //it works for DAG
         vector<pair<int, int>>dist;
         
         vector<vector<int>>allPaths;
