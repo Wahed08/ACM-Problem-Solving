@@ -1,8 +1,13 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-       int answer = 0, cnt = 0; 
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        int answer = 0, cnt = 0; 
         sort(nums.begin(), nums.end());
+        if(nums.size() == 0)
+            return 0;
         
         vector<long>vec;
         vec.push_back(nums[0]);
