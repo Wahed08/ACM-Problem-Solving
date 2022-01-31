@@ -18,7 +18,6 @@ public:
                 if(nums[i] + nums[k] + nums[j] == 0){
                     
                     vector<int>v = {nums[i], nums[k], nums[j]};
-                    sort(v.begin(), v.end());
                     s.insert(v);
                     int x = k, y = j;
                     while(k < n && nums[x] == nums[k])
