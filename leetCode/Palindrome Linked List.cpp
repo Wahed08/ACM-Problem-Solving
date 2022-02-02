@@ -16,7 +16,6 @@ public:
         cin.tie(0), cout.tie(0);
         
         ListNode* temp = head, *curr = head, *prev = NULL;
-        ListNode *node;
         int ln = 0;
         
         while(temp != NULL){
@@ -30,9 +29,9 @@ public:
             return true;
         
         if(ln % 2 != 0)
-            ln = ln/2 + 1, k = ln-1;
+            ln = ln/2 + 1;
         else
-            ln = ln / 2, k = ln;
+            ln = ln / 2;
 
         
         while(ln != 0){
@@ -41,16 +40,15 @@ public:
         }
         
         while(curr != NULL){
-            node = new ListNode();
-            node->val = curr->val;
-            node->next = prev;
-            prev = node;
-            curr = curr->next;
+            ListNode *node = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = node;
         }
         
-        while(node != NULL){
-            if(temp->val == node->val){
-                node=node->next;
+        while(prev != NULL){
+            if(temp->val == prev->val){
+                prev=prev->next;
                 temp = temp->next;
             }else{
                 return false;
