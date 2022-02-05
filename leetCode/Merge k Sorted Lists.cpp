@@ -10,27 +10,59 @@
  */
 class Solution {
 public:
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
+    ListNode* mergeSort(ListNode* l1, ListNode* l2){
         
-        vector<int>vec;
+        ListNode* temp1 = l1, *temp2 = l2;
         
-        for(int i=0; i<lists.size(); i++){
-            ListNode* temp = lists[i];
-            while(temp != NULL){
-                vec.push_back(temp->val);
-                temp=temp->next;
+        ListNode* newNode = new ListNode;
+        newNode->val = 346273;
+        newNode->next = NULL;
+        ListNode *head = newNode;
+        
+        while(temp1 != NULL and temp2 != NULL){
+            
+            if(temp1->val < temp2->val){
+               newNode->next = temp1;
+               newNode = newNode->next;
+               temp1 = temp1->next;
+                
+            }else{
+               newNode->next = temp2;
+               newNode = newNode->next;
+               temp2 = temp2->next;
             }
         }
-        sort(vec.begin(), vec.end());
         
-        ListNode *curr = NULL;
-        for(int i=vec.size()-1; i>=0; i--){
-             ListNode* head = new ListNode;
-             head->val = vec[i];
-             head->next = curr;
-             curr = head;
+        while(temp1 != NULL){
+           newNode->next = temp1;
+           newNode = newNode->next;
+           temp1 = temp1->next;
         }
-       
-        return curr;
+        
+         while(temp2 != NULL){
+             newNode->next = temp2;
+             newNode = newNode->next;
+             temp2 = temp2->next;
+        }
+        return head->next;
+    }
+    
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+         if(lists.size() == 0)
+            return NULL;
+        
+        ListNode* head = lists[0];
+        int n = lists.size();
+        
+        for(int i = 1; i<n; i++){
+             head = mergeSort(head, lists[i]);   
+        }  
+        return head;
     }
 };
+
+
