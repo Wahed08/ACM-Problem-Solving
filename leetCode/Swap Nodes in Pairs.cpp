@@ -19,15 +19,17 @@ public:
             return head;
         
         ListNode* temp = head;
-        ListNode* prev = NULL, *result, *t;
+        ListNode* prev = NULL, *result;
+        ListNode* curr, *pr;
+        int flag = 0;
+        
         queue<ListNode*>q;
         
         while(temp != NULL){
             q.push(temp);
             temp = temp->next;
         }
-        int flag = 0;
-        ListNode* curr, *pr;
+       
         while(!q.empty()){
             
             if(q.size() == 1){
@@ -42,8 +44,8 @@ public:
             flag++;
             
             pr->next = curr;
-            
             curr->next = NULL;
+            
             if(flag == 1){
                 prev = pr;
                 result = pr->next;
