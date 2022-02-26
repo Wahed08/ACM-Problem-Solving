@@ -56,3 +56,20 @@ public:
         return two;
     }
 };
+
+
+
+///// easy approach
+ unordered_map<string, vector<string>>mp;
+        vector<vector<string>>vec;
+        
+        for(int i=0; i<n; i++){
+            string str = strs[i];
+            sort(str.begin(), str.end());
+            mp[str].push_back(strs[i]);
+        }
+        
+        for(auto it = mp.begin(); it != mp.end(); it++){
+            vec.push_back(it->second);
+        }
+        return vec;
