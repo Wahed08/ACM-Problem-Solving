@@ -14,11 +14,16 @@ public:
             
             if(mp.find(s[i]) != mp.end()){
                 
-                value = max(value, sum);
-                while(mp.find(s[i]) != mp.end()){
-                    mp.erase(s[left++]);
-                }
-                mp.insert({s[i], i});
+//              while(mp.find(s[i]) != mp.end()){
+//                  mp.erase(s[left++]);
+//              }
+// without using loop we can optimize it better by using next 3 lines of code
+//
+                auto it = mp.find(s[i]);
+                left = max(it->second + 1, left);
+                mp.at(s[i]) = i;
+//
+//                mp.insert({s[i], i});
                 sum = right - left + 1;
                 right++;
                 
@@ -28,9 +33,9 @@ public:
                 sum = right - left + 1;
                 right++;
             }
+              value = max(value, sum);
         }
-        if(sum>value)
-            return sum;
+        
         return value;
     }
 };
