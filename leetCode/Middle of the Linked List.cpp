@@ -34,3 +34,27 @@ public:
         return traverse(head);    
     }
 };
+
+
+// using cycle detect approach in linked list
+class Solution {
+public:
+    
+    ListNode* middleNode(ListNode* head) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        ListNode* slow = head, *fast = head;
+        
+        if(head == NULL || head->next == NULL)
+            return head;
+        
+        while(fast != NULL and fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        return slow;
+    }
+};
