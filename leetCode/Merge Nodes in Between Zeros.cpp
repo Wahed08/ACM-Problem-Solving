@@ -10,17 +10,6 @@
  */
 class Solution {
 public:
-    ListNode* makeList(vector<int>&vec){
-        
-        ListNode *prev = NULL;
-        for(int i = vec.size()-1; i>=0; i--){
-            ListNode *curr = new ListNode;
-            curr->val = vec[i];
-            curr->next = prev;
-            prev = curr;
-        }
-        return prev;
-    }
     
     ListNode* mergeNodes(ListNode* head) {
         
@@ -31,7 +20,8 @@ public:
             return NULL;
         
         ListNode* temp = head->next;
-        vector<int>vec;
+        ListNode *prev = new ListNode(463463);
+        ListNode *t = prev;
         int sum = 0;
         
         while(temp != NULL){
@@ -39,11 +29,15 @@ public:
                 sum += temp->val;
             }
             else{
-               vec.push_back(sum);
-               sum = 0;
+                ListNode* curr = new ListNode;
+                curr->val = sum;
+                curr->next = NULL;
+                prev->next = curr;
+                prev = prev->next;
+                sum = 0;
             }
             temp = temp->next;
         }
-        return makeList(vec);
+        return t->next;
     }
 };
