@@ -32,3 +32,22 @@ public:
         return NULL;
     }
 };
+
+//without using extra space O(m + n)
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+         ListNode *temp1 = headA;
+         ListNode *temp2 = headB;
+        
+        while(temp1 != temp2){
+            temp1 = temp1 != NULL ? temp1->next : headB;
+            temp2 = temp2 != NULL ? temp2->next : headA;
+        }
+        return temp1;
+    }
+};
