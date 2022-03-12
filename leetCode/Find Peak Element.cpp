@@ -19,3 +19,24 @@ public:
         return k;
     }
 };
+
+// using binary search
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+     
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        int start = 0, end = nums.size() - 1;
+        while(start < end){
+            int mid = start + (end-start)/2;
+            if(nums[mid+1] > nums[mid])
+                start = mid + 1;
+            else
+                end = mid;
+        }
+        return start;
+    }
+};
