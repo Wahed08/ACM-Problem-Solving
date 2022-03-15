@@ -1,3 +1,5 @@
+// this solution got TLE
+
 class Solution {
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
@@ -34,5 +36,33 @@ public:
         }
         
         return sum;
+    }
+};
+
+
+// sliding window solution
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        int n = nums.size();
+        int count = 0;
+        int mul = 1, j=0;
+        
+        if(k <= 1)
+            return 0;
+        
+        for(int i=0; i<n; i++){
+            mul *= nums[i];
+            while(mul >= k)
+                mul /= nums[j++];
+            
+            count += i-j+1;
+        }
+        
+        return count;
     }
 };
