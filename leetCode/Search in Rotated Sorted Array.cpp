@@ -38,7 +38,15 @@ public:
         int n = nums.size();
         int pivot = findPivot(nums, 0, n-1);
         
-        if(pivot == 0 or nums[0] > target)
+        if(n == 1){
+            if(target == nums[0])
+                return 0;
+            return -1;
+        }
+        if(nums[0] > nums[1])
+            pivot = 1;
+        
+        if(pivot == 0 || nums[0] > target)
             return binarySearch(nums, pivot, n-1, target);
         
         return binarySearch(nums, 0, pivot-1, target);
