@@ -2,25 +2,24 @@ class Solution {
 public:
     int minDistance(string word1, string word2) {
         
-        int m=word1.length();
-        int n=word2.length();
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
         
-        int edit[m+1][n+1];
+        int m = word1.length(), n = word2.length();
+        vector<vector<int>>vec(n+1, vector<int>(m+1));
         
-        for(int i=0; i<=m; i++){
-            for(int j=0; j<=n; j++){
-                if(i==0){
-                    edit[i][j] = j;
-                }else if(j==0){
-                    edit[i][j] = i;
-                }
-                else if(word1[i-1] == word2[j-1]){
-                    edit[i][j] = edit[i-1][j-1];
-                }else{
-                    edit[i][j] = 1 + min(edit[i-1][j-1],min(edit[i-1][j],edit[i][j-1]));
-                }
+        for(int i=0; i<=m; i++) vec[0][i] = i;
+        for(int i=0; i<=n; i++) vec[i][0] = i;
+        
+        for(int i = 1; i<=n; i++){
+            for(int j = 1; j<=m; j++){
+                if(word2[i-1] == word1[j-1])
+                    vec[i][j] = vec[i-1][j-1];
+                else
+                    vec[i][j] = 1 + min(min(vec[i-1][j], vec[i][j-1]), vec[i-1][j-1]);
             }
         }
-        return edit[m][n];
+        
+        return vec[n][m];
     }
 };
