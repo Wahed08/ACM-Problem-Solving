@@ -15,3 +15,20 @@ public:
         return cnt;
     }
 };
+
+
+////All the integers in nums appear only once except for precisely one integer which appears two or more times
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        //interesting
+        while(nums[0] != nums[nums[0]])
+            swap(nums[0], nums[nums[0]]);
+        
+        return nums[0];
+    }
+};
