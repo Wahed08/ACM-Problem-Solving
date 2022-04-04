@@ -54,3 +54,28 @@ public:
             
     }
 };
+
+//without converting to array
+
+class Solution {
+public:
+    
+    ListNode* swapNodes(ListNode* head, int k) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        k--;
+        ListNode *fast = head, *slow = head, *prev=NULL;
+        
+        while(k--) slow = slow->next;
+        prev = slow->next;
+        
+        while(prev != NULL){
+            prev = prev->next;
+            fast = fast->next;
+        }
+        swap(fast->val, slow->val);
+        return head;
+    }
+};
