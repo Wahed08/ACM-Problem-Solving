@@ -11,35 +11,27 @@
 class Solution {
 public:
     
-    void insert(ListNode** root, int item){
-        
-        ListNode* temp = new ListNode;
-        temp->val = item;
-        temp->next = *root;
-        *root = temp;
-}
-    
     ListNode* arrayToList(vector<int>vec, int ln){
         
-        ListNode *root = NULL;
-        for (int i = ln-1; i >=0; i--)
-            insert(&root, vec[i]);
-       return root;
+        ListNode *prev = NULL;
+        for(int i = ln-1; i>=0; i--){
+            ListNode *temp = new ListNode(vec[i]);
+            temp->next = prev;
+            prev = temp;
+        }
+        return prev;
     }
     
     
     void makeAnArray(ListNode* head, int k, vector<int>&vec){
         
-        if(head != NULL || !head->next){
-       
         ListNode *temp = head;
         
-        while(temp->next != NULL){
+        while(temp != NULL){
             vec.push_back(temp->val);
             temp = temp->next;
         }
-        vec.push_back(temp->val);
-     }
+
         int cnt1;
         cnt1 = vec[k-1];
         vec[k-1] = vec[vec.size()-k];
@@ -48,15 +40,17 @@ public:
     }
     
     ListNode* swapNodes(ListNode* head, int k) {
+        
         ios_base::sync_with_stdio(false);
         cin.tie(0), cout.tie(0);
         
-        vector<int>vec;
+        if(!head or !head->next)
+            return head;
         
+        vector<int>vec;
         makeAnArray(head, k, vec);
           
         return arrayToList(vec, vec.size());
             
-        // return head;
     }
 };
