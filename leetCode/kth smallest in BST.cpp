@@ -11,26 +11,29 @@
  */
 class Solution {
 public:
-    
-    TreeNode* smallest(TreeNode* root, int& k){
+    int value;
+    void smallest(TreeNode* root, int& k){
+        
         if(root == NULL)
-            return root;
+            return;
         
-        TreeNode* left = smallest(root->left, k);
+        smallest(root->left, k);
         
-        if(left != NULL)
-            return left;
+        k--;
+        if(k == 0){
+           value = root->val;
+           return;
+        }
         
-         k--;
-        if(k == 0) return root;
-        
-        return smallest(root->right, k);
+        smallest(root->right, k);
     }
     
     int kthSmallest(TreeNode* root, int k) {
-        TreeNode* temp;
-        temp = smallest(root, k);
         
-        return temp->val;
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        smallest(root, k);
+        return value;
     }
 };
