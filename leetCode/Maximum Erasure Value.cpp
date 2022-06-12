@@ -33,3 +33,29 @@ public:
         return value;
     }
 };
+
+//optimized solution
+
+class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        int n = nums.size(), left = 0, right = 0, ans=0, sum=0;
+        set<int>mapp;
+        
+        while(right < n){
+            while(mapp.find(nums[right]) != mapp.end()){
+                ans -= nums[left];
+                mapp.erase(nums[left++]);
+            }
+            ans += nums[right];
+            mapp.insert(nums[right++]);
+            sum = max(sum, ans);
+        }
+        
+        return sum;
+    }
+};
