@@ -6,6 +6,7 @@ public:
         if(nums.size() == 1)
             return nums[0];
         
+        // this is kadane's algorithm
         for(int i=1; i<nums.size(); i++){
             cnt += nums[i];
             cnt = max(cnt, nums[i]);
