@@ -11,16 +11,11 @@ public:
         while(start < row and end >= 0){
             int value = grid[start][end];
             if(value < 0){
-                ans++;
-                end -= 1;
-                if(end==-1){
-                    start += 1;
-                    end = col-1;
-                }
+                end--;
+                ans += row-start;
             }
             else{
-                start += 1;
-                end = col-1;
+                start++;
             }
         }
         return ans;
