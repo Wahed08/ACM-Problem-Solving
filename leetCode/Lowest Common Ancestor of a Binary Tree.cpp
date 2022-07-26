@@ -37,3 +37,31 @@ public:
         return v1[v1.size()-1];
     }
 };
+
+// without space 0(1)
+
+class Solution {
+public:
+    TreeNode* dfs(TreeNode* root, TreeNode *p, TreeNode *q){
+        
+        if(root == NULL) return NULL;
+        if(root == p || root == q) return root;
+        
+        TreeNode *left = dfs(root->left, p, q);
+        TreeNode *right = dfs(root->right, p, q);
+        
+        if(left == NULL and right == NULL) return NULL;
+        if(left != NULL and right != NULL) return root;
+        
+        return left != NULL? left : right;
+       
+    }
+    
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q){
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        return dfs(root, p, q);
+    }
+};
