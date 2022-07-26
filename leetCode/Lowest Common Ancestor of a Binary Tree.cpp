@@ -50,9 +50,7 @@ public:
         TreeNode *left = dfs(root->left, p, q);
         TreeNode *right = dfs(root->right, p, q);
         
-        if(left == NULL and right == NULL) return NULL;
         if(left != NULL and right != NULL) return root;
-        
         return left != NULL? left : right;
        
     }
