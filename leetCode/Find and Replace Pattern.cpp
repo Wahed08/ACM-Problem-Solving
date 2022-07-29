@@ -21,7 +21,10 @@ public:
                     continue;
                 }
                 else if(m1[c2] == c1 and m2[c1] == c2) continue;
-                else flag = 0;
+                else{
+                    flag = 0;
+                    break;
+                }
             }
             if(flag == 1) ans.push_back(s);
         }
