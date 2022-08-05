@@ -31,3 +31,30 @@ public:
         return st.size();
     }
 };
+
+
+// Accepted dp memoization
+
+class Solution {
+public:
+    int combination(vector<int>&vec, int target, map<int, int>&dp){
+        
+        if(target == 0) return 1;
+        if(target < 0) return 0;    
+        if(dp.find(target) != dp.end()) return dp[target];
+        
+        for(int i=0; i<vec.size(); i++){
+            dp[target] += combination(vec, target-vec[i], dp);
+        }
+        return dp[target];
+    }
+    
+    int combinationSum4(vector<int>& nums, int target) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        map<int, int>dp;
+        return combination(nums, target, dp);
+    }
+};
