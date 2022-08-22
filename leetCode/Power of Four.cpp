@@ -11,3 +11,16 @@ public:
         return false;
     }
 };
+
+
+//
+class Solution {
+public:
+    bool isPowerOfFour(int n) {
+       
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        return n <= 0 ? false : log(n)/log(4) == floor(log(n)/log(4));
+    }
+};
