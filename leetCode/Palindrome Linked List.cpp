@@ -16,24 +16,17 @@ public:
         cin.tie(0), cout.tie(0);
         
         ListNode* temp = head, *curr = head, *prev = NULL;
-        int ln = 0;
+        int ln = 0, k;
         
         while(temp != NULL){
             temp = temp->next;
             ln++;
         }
         temp = head;
-        int k;
         
-        if(ln == 1)
-            return true;
-        
-        if(ln % 2 != 0)
-            ln = ln/2 + 1;
-        else
-            ln = ln / 2;
+        if(ln == 1) return true;
+        ln = (ln % 2 == 0) ? ln/2 : ln/2 + 1;
 
-        
         while(ln != 0){
             curr = curr->next;
             ln--;
