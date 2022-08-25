@@ -5,13 +5,13 @@ public:
         ios_base::sync_with_stdio(false);
         cin.tie(0), cout.tie(0);
         
-        map<char, int>mp1, mp2;
+        vector<int>mapp(26,0);
         
-        for(auto it : ransomnote) mp1[it]++;
-        for(auto it : magazine) mp2[it]++;
+        for(auto it : ransomnote) mapp[it-'a']--;
+        for(auto it : magazine) mapp[it-'a']++;
         
-        for(auto it : mp1) 
-            if(mp2[it.first] < it.second) return false;
+        for(auto it : mapp) 
+            if(it < 0) return false;
         
         return true;
     }
