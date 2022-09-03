@@ -1,0 +1,5 @@
+# Write your MySQL query statement below
+    
+    SELECT Employee.salary as SecondHighestSalary from Employee UNION(Select NULL)
+    Order By 1 DESC LIMIT 1, 1
+    
