@@ -8,6 +8,8 @@ public:
         if(str.length() >= 4 and abs(str[2]-str[3]) != k) return;
         if(str.length() >= 5 and abs(str[3]-str[4]) != k) return;
         if(str.length() >= 6 and abs(str[4]-str[5]) != k) return;
+        if(str.length() >= 7 and abs(str[5]-str[6]) != k) return;
+        if(str.length() >= 8 and abs(str[6]-str[7]) != k) return;
         
         if(str.length() == n){
             for(int x=0; x<str.length()-1; x++){
