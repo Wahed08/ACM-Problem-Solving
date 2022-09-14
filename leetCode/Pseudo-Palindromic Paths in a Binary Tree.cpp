@@ -43,3 +43,32 @@ public:
         return count;
     }
 };
+
+//Accepted
+
+class Solution {
+public:
+    int count = 0;
+    void dfs(TreeNode* root, int value){
+        
+        if(root == NULL) return;
+            value ^= (1 << root->val); // xor operator find single odd value
+            if(root->left == NULL and root->right == NULL){
+                if((value & (value-1)) == 0){
+                    count++;
+                }
+            }
+            dfs(root->left, value);
+            dfs(root->right, value);
+
+    }
+    
+    int pseudoPalindromicPaths (TreeNode* root) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        dfs(root, 0);
+        return count;
+    }
+};
