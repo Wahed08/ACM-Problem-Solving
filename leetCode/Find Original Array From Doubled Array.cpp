@@ -7,7 +7,7 @@ public:
         
         map<int, int>mapp;
         vector<int>vec;
-        int k = changed.size(), count = 0;
+        int k = changed.size();
         sort(changed.begin(), changed.end());
         for(auto it : changed) mapp[it]++;
         
