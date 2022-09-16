@@ -22,3 +22,31 @@ public:
         return check(nums, multipliers, 0, n-1, 0);
     }
 };
+
+
+// Accepted
+class Solution {
+public:
+    int check(vector<int>&nums,vector<int>&multipliers,int left,int n,int x,vector<vector<int>>&vec){
+        
+        if(x == multipliers.size()) return 0;
+        if(vec[left][x] != INT_MIN) return vec[left][x];
+        
+        int l = nums[left]*multipliers[x] + check(nums, multipliers, left+1, n, x+1, vec);
+        int r = nums[(n-1)-(x-left)]*multipliers[x] + check(nums, multipliers, left, n, x+1, vec);
+        
+        return vec[left][x] = max(l,r);
+    }
+    
+    int maximumScore(vector<int>& nums, vector<int>& multipliers) {
+        
+        ios_base::sync_with_stdio(false);
+        cin.tie(0), cout.tie(0);
+        
+        int m = multipliers.size();
+        int n = nums.size();
+        vector<vector<int>>vec(m+1, vector<int>(m+1, INT_MIN));
+        
+        return check(nums, multipliers, 0, n, 0, vec);
+    }
+};
